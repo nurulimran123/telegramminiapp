@@ -3,7 +3,7 @@ import TelegramBot from "node-telegram-bot-api";
 const botToken = "YOUR_BOT_TOKEN"; // Replace with your BotFather token
 const bot = new TelegramBot(botToken, { polling: true });
 
-// Handle /start command
+// Handle /start command ///
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
 
