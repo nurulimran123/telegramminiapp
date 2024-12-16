@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+    h1 {
+      color: #333;
+    }
+    #score {
+      font-size: 24px;
+      margin: 20px;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click the Button Game!</h1>
+  <p id="score">Score: 0</p>
+  <button id="clickButton">Click Me!</button>
+
+  <script>
+    let score = 0;
+
+    const scoreElement = document.getElementById('score');
+    const clickButton = document.getElementById('clickButton');
+
+    clickButton.addEventListener('click', () => {
+      score++;
+      scoreElement.textContent = `Score: ${score}`;
+      sendScoreToTelegram(score);
+    });
+
+    function sendScoreToTelegram(score) {
+      if (window.TelegramGameProxy) {
+        TelegramGameProxy.close(score); // Send score back to Telegram
+      }
+    }
+  </script>
+</body>
+</html>
